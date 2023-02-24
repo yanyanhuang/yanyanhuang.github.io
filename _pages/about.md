@@ -25,10 +25,13 @@ My research lies at the intersection of artificial intelligence and healthcare. 
 
 
 # 🔥 News
-- *2023.02*: &nbsp;🎉🎉 One paper was accepted by MedIA!
-- *2023.02*: &nbsp;🎉🎉 One paper was accepted by ICASSP 2023!
-- *2023.01*: &nbsp;🎉🎉 One paper was accepted by ISBI 2023!
-- *2022.12*: &nbsp;🎉🎉 One paper was accepted by JNE!
+- *2023.02*: &nbsp; One paper was accepted by MedIA!
+- *2023.02*: &nbsp; One paper was accepted by ICASSP 2023!
+- *2023.01*: &nbsp; One paper was accepted by ISBI 2023!
+- *2022.12*: &nbsp; One paper was accepted by JNE!
+- *2022.09*: &nbsp; Won a Gold Medal (4/1175) in Kaggle Hacking the Human Body Competition!
+- *2022.05*: &nbsp; Won a Silver Medal (Top 2%) in Kaggle H&M Recommendation Competition!
+- *2022.01*: &nbsp; One paper was accepted by ISBI 2022!
 
 # 📝 Publications 
 
