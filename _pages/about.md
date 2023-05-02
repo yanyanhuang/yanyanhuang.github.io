@@ -58,15 +58,16 @@ Yu Fu$^{*}$, **Yanyan Huang$^{*}$**, Meng Niu, Le Xue, Shunjie Dong, Shunlin Guo
 - [Altered nonlinear Granger causality interactions in the large-scale brain networks of patients with schizophrenia.](https://iopscience.iop.org/article/10.1088/1741-2552/acabe7/meta) Yu Fu, Meng Niu, Yuanhang Gao, Shunjie Dong, **Yanyan Huang**, Zhe Zhang and Cheng Zhuo. **JNE**
 
 # 🎖 Honors and Awards
-- *2022.09* Gold Medal (4/1175) in Kaggle Hacking the Human Body Competition.
-- *2022.05* Silver Medal (Top 2%) in Kaggle HM Recommendation Competition.
+- *2023.05* Gold Medal (7/1165) in Kaggle "Google - Isolated Sign Language Recognition" Competition.
+- *2022.09* Gold Medal (4/1175) in Kaggle "Hacking the Human Body Competition".
+- *2022.05* Silver Medal (Top 2%) in Kaggle "HM Recommendation" Competition.
 - *2020.06* People's Scholarship in Harbin Institute of Technology (Four consecutive years).
 - *2018.10* National Scholarship in China (1.8%).
 - *2018.07* The first prize of the Northeast Division of the "NXP" Cup Smart Car Competition.
 - *2018.04* Meritorious Winner, Interdisciplinary Contest in Modeling (ICM), Consortium for Mathematics and Its Application.
 
 # 📖 Educations
-- *2020.09 - 2023.03 (now)*, College of Information Science and Electronic Engineering, Zhejiang University. 
+- *2020.09 - 2023.03*, College of Information Science and Electronic Engineering, Zhejiang University. 
 - *2016.09 - 2020.06*, School of Electronics and Information Engineering, Harbin Institite of Technology. 
 
 <!-- # 💬 Invited Talks
