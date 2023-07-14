@@ -25,14 +25,15 @@ My research lies at the intersection of artificial intelligence and healthcare. 
 
 
 # 🔥 News
-- *2023.05*: &nbsp; Won a Gold Medal (7/1165) in "Google - Isolated Sign Language Recognition" Competition!
-- *2023.02*: &nbsp; One paper was accepted by MedIA!
-- *2023.02*: &nbsp; One paper was accepted by ICASSP 2023!
-- *2023.01*: &nbsp; One paper was accepted by ISBI 2023!
-- *2022.12*: &nbsp; One paper was accepted by JNE!
-- *2022.09*: &nbsp; Won a Gold Medal (4/1175) in Kaggle "Hacking the Human Body" Competition!
-- *2022.05*: &nbsp; Won a Silver Medal (Top 2%) in Kaggle "HM Recommendation" Competition!
-- *2022.01*: &nbsp; One paper was accepted by ISBI 2022!
+- *2023.07*: &nbsp; 
+- *2023.05*: &nbsp; Won a Gold Medal (7/1165) in ["Google - Isolated Sign Language Recognition"](https://www.kaggle.com/competitions/asl-signs) Competition!
+- *2023.02*: &nbsp; One paper was accepted by [Medical Image Analysis (MIA)](https://www.sciencedirect.com/journal/medical-image-analysis)!
+- *2023.02*: &nbsp; One paper was accepted by [ICASSP 2023](https://2023.ieeeicassp.org/)!
+- *2023.01*: &nbsp; One paper was accepted by [ISBI 2023](https://2023.biomedicalimaging.org/en/)!
+- *2022.12*: &nbsp; One paper was accepted by [Journal of Neural Engineering (JNE)](https://iopscience.iop.org/journal/1741-2552)!
+- *2022.09*: &nbsp; Won a Gold Medal (4/1175) in [Kaggle "Hacking the Human Body"](https://www.kaggle.com/competitions/hubmap-organ-segmentation) Competition!
+- *2022.05*: &nbsp; Won a Silver Medal (Top 2%) in [Kaggle "HM Recommendation"](https://www.kaggle.com/competitions/h-and-m-personalized-fashion-recommendations) Competition!
+- *2022.01*: &nbsp; One paper was accepted by [ISBI 2022](https://ieeexplore.ieee.org/xpl/conhome/9761376/proceeding)!
 
 # 📝 Publications 
 
