@@ -17,7 +17,7 @@ redirect_from:
 
 <span class='anchor' id='about-me'></span>
 
-I'm a third year graduate student at Zhejiang University. I obtained my B.Eng degree in Harbin Institute of Technology.
+I'm a first year PhD student at [The University of Hong Kong](https://www.hku.hk/) and I'm a [Kaggle Competition Master](https://www.kaggle.com/rock139). I obtained my MPhil degree in [Zhejiang University](https://www.zju.edu.cn/) in 2023 and the B.Eng degree in [Harbin Institute of Technology](https://www.hit.edu.cn/) in 2020.
 
 My research lies at the intersection of artificial intelligence and healthcare. I am dedicated to designing advanced machine learning algorithms for medical image analysis and network neuroscience.
 
@@ -26,7 +26,7 @@ My research lies at the intersection of artificial intelligence and healthcare. 
 
 # 🔥 News
 - *2023.07*: 🔥 One paper was accepted by [ICCV 2023](https://iccv2023.thecvf.com/)!
-- *2023.07*: 🔥 One paper was accepted by [Information Fusion](https://www.sciencedirect.com/journal/information-fusion)!
+- *2023.07*: 🔥 One paper was accepted by [Information Fusion (IF 17.56)](https://www.sciencedirect.com/journal/information-fusion)!
 - *2023.05*: &nbsp; Won a Gold Medal (7/1165) in ["Google - Isolated Sign Language Recognition"](https://www.kaggle.com/competitions/asl-signs) Competition!
 - *2023.02*: &nbsp; One paper was accepted by [Medical Image Analysis (MIA)](https://www.sciencedirect.com/journal/medical-image-analysis)!
 - *2023.02*: &nbsp; One paper was accepted by [ICASSP 2023](https://2023.ieeeicassp.org/)!

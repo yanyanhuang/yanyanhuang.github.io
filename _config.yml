@@ -7,7 +7,7 @@
 
 # Site Settings
 title                    : "Yanyan Huang Homepage"
-description              : "Kaggle competition master. Third year graduate student at Zhejiang University. Focusing on medical image analysis and computer vision."
+description              : "Kaggle Competition Master. First year PhD student at The University of Hong Kong. Focusing on Medical Image Analysis and Computer Vision."
 repository               : "rockyy97/rockyy97.github.io"
 google_scholar_stats_use_cdn : true
 
@@ -23,8 +23,8 @@ baidu_site_verification  :  # get baidu_site_verification from https://ziyuan.ba
 author:
   name             : "Yanyan Huang"
   avatar           : "images/android-chrome-512x512.png"
-  bio              : "Zhejiang University"
-  location         : "Hangzhou, China"
+  bio              : "The University of Hong Kong"
+  location         : "Hong Kong"
   employer         :
   pubmed           : 
   googlescholar    : "https://scholar.google.com/citations?user=6mQ6b1EAAAAJ"
