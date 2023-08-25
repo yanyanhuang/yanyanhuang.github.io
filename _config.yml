@@ -7,7 +7,7 @@
 
 # Site Settings
 title                    : "Yanyan Huang Homepage"
-description              : "Kaggle Competition Master. First year PhD student at The University of Hong Kong. Focusing on Medical Image Analysis and Computer Vision."
+description              : "Kaggle Competitions Master. First year PhD student at The University of Hong Kong. Focusing on Medical Image Analysis and Computer Vision."
 repository               : "rockyy97/rockyy97.github.io"
 google_scholar_stats_use_cdn : true
 
@@ -28,7 +28,7 @@ author:
   employer         :
   pubmed           : 
   googlescholar    : "https://scholar.google.com/citations?user=6mQ6b1EAAAAJ"
-  email            : "hit_hyy@outlook.com"
+  email            : "yanyanh@connect.hku.hk"
   researchgate     :  # e.g., "https://www.researchgate.net/profile/yourprofile"
   uri              :
   bitbucket        :
@@ -37,13 +37,13 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           : "github rockyy97"
+  github           : "rockyy97"
   google_plus      :
   keybase          :
   instagram        :
   impactstory      : # e.g., "https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
   lastfm           :
-  linkedin         : # e.g., "linkedin username"
+  linkedin         : "yyhuang8"
   dblp             : # e.g., "https://dblp.org/pid/xx/xxxx.html"
   orcid            : # e.g., "https://orcid.org/xxxx"
   pinterest        :
