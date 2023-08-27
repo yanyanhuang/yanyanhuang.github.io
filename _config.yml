@@ -8,7 +8,7 @@
 # Site Settings
 title                    : "Yanyan Huang Homepage"
 description              : "Kaggle Competitions Master. First year PhD student at The University of Hong Kong. Focusing on Medical Image Analysis and Computer Vision."
-repository               : "rockyy97/rockyy97.github.io"
+repository               : "yanyanhuang/yanyanhuang.github.io"
 google_scholar_stats_use_cdn : true
 
 # google analytics
@@ -37,7 +37,7 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           : "rockyy97"
+  github           : "yanyanhuang"
   google_plus      :
   keybase          :
   instagram        :
