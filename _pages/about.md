@@ -26,7 +26,8 @@ I am also a machine learning competition enthusiast and a [Kaggle Competitions M
 <!-- My research interest includes neural machine translation and computer vision. I have published more than 100 papers at the top international AI conferences with total <a href='https://scholar.google.com/citations?user=DhtAFkwAAAAJ'>google scholar citations <strong><span id='total_cit'>260000+</span></strong></a> (You can also use google scholar badge <a href='https://scholar.google.com/citations?user=DhtAFkwAAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a>). -->
 
 
-# 🔥 News
+<!-- # 🔥 News -->
+# News
 - *2023.07*: 🔥 One paper was accepted by [ICCV 2023](https://iccv2023.thecvf.com/)!
 - *2023.07*: 🔥 One paper was accepted by [Information Fusion (IF 17.56)](https://www.sciencedirect.com/journal/information-fusion)!
 - *2023.05*: &nbsp; Won a **Gold** Medal (7/1165) in ["Google - Isolated Sign Language Recognition"](https://www.kaggle.com/competitions/asl-signs) Competition!
@@ -38,7 +39,8 @@ I am also a machine learning competition enthusiast and a [Kaggle Competitions M
 <!-- - *2022.05*: &nbsp; Won a Silver Medal (Top 2%) in [Kaggle "HM Recommendation"](https://www.kaggle.com/competitions/h-and-m-personalized-fashion-recommendations) Competition! -->
 <!-- - *2022.01*: &nbsp; One paper was accepted by [ISBI 2022](https://ieeexplore.ieee.org/xpl/conhome/9761376/proceeding)! -->
 
-# 📝 Publications
+<!-- # 📝 Publications -->
+# Publications
 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">ICCV 2023</div><img src='images/iccv2023.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
@@ -127,7 +129,8 @@ For the first time discussed the differences between MDD and HC using both rich 
   
   *Journal of Neural Engineering (JNE), 2022*
 
-# 🎖 Honors and Awards
+<!-- # 🎖 Honors and Awards -->
+# Honors and Awards
 - *2023.05* Gold Medal (7/1165) in Kaggle ["Google - Isolated Sign Language Recognition"](https://www.kaggle.com/competitions/asl-signs) Competition.
 - *2022.09* Gold Medal (4/1175) in Kaggle ["Hacking the Human Body"](https://www.kaggle.com/competitions/hubmap-organ-segmentation) Competition.
 - *2022.05* Silver Medal (Top 2%) in Kaggle ["HM Recommendation"](https://www.kaggle.com/competitions/h-and-m-personalized-fashion-recommendations) Competition.
@@ -136,7 +139,8 @@ For the first time discussed the differences between MDD and HC using both rich 
 - *2018.07* The first prize of the Northeast Division of the "NXP" Cup Smart Car Competition.
 - *2018.04* Meritorious Winner, Interdisciplinary Contest in Modeling (ICM), Consortium for Mathematics and Its Application.
 
-# 📖 Educations
+<!-- # 📖 Educations -->
+# Educations
 - *2020.09 - 2023.03*, College of Information Science and Electronic Engineering, Zhejiang University. 
 - *2016.09 - 2020.06*, School of Electronics and Information Engineering, Harbin Institite of Technology. 
 
