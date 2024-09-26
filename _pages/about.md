@@ -28,6 +28,7 @@ I am also a machine learning competition enthusiast and a [Kaggle Competitions M
 
 <!-- # 🔥 News -->
 # News
+- *2024.09*: 🔥 One paper was accepted by [NeurIPS 2024](https://neurips.cc/)!
 - *2024.08*: 🔥 One paper was accepted by [Medical Image Analysis (MIA)](https://www.sciencedirect.com/science/article/abs/pii/S1361841524002317)!
 - *2024.08*: 🔥 One paper was accepted by [Progress in Neuro-Psychopharmacology and Biological Psychiatry (PNP)](https://www.sciencedirect.com/science/article/abs/pii/S0278584624001568)!
 - *2023.07*: &nbsp; One paper was accepted by [ICCV 2023](https://openaccess.thecvf.com/content/ICCV2023/html/Huang_ConSlide_Asynchronous_Hierarchical_Interaction_Transformer_with_Breakup-Reorganize_Rehearsal_for_Continual_ICCV_2023_paper.html)!
