@@ -49,6 +49,7 @@
     border-bottom: 1px #efefef solid;
     padding: 2em 0 2em 0;
     
+
     .paper-box-image{
         justify-content: center;
         display: flex;
@@ -105,82 +106,4 @@ h1:before, .anchor:before {
     color: white;
     background-color: #00369f;
     font-size: .8em;
-}
-
-/* News section scroll box */
-.news-wrapper {
-  position: relative;
-  border: 1px solid #e8e8e8;  // 保留边框
-  border-radius: 8px;
-  padding: 1.5em;
-  margin: 1em 0;
-  
-  h1 {
-    margin-top: 0;
-    margin-bottom: 0.5em;
-    padding-bottom: 0.5em;
-    border-bottom: 2px solid #e8e8e8;
-  }
-}
-
-.news-box {
-  max-height: 270px;
-  overflow-y: auto;
-  padding-right: 10px;
-  
-  /* 自定义滚动条样式 */
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
-  
-  &::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 4px;
-  }
-  
-  &::-webkit-scrollbar-thumb {
-    background: #c1c1c1;
-    border-radius: 4px;
-    
-    &:hover {
-      background: #a8a8a8;
-    }
-  }
-  
-  /* 新闻条目样式 */
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    
-    li {
-      display: flex;
-      margin-bottom: 0.5em;
-      padding-bottom: 0.5em;
-      border-bottom: 1px solid #eee;
-      
-      i {  // 日期样式
-        flex: 0 0 5em;  // 固定宽度，不伸缩
-        color: #666;
-      }
-      
-      span.news-content {
-        flex: 1;  // 占据剩余空间
-        min-width: 0;  // 防止flex项目溢出
-        word-wrap: break-word;  // 允许长单词换行
-        word-break: break-word;  // 允许在单词内换行
-      }
-      
-      &:last-child {
-        border-bottom: none;
-        margin-bottom: 0;
-        padding-bottom: 0;
-      }
-      
-      a {
-        word-wrap: break-word;  // 允许长单词换行
-        word-break: break-word;  // 允许在单词内换行
-      }
-    }
-  }
 }

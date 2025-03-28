@@ -110,7 +110,8 @@ h1:before, .anchor:before {
 /* News section scroll box */
 .news-wrapper {
   position: relative;
-  border: 1px solid #e8e8e8;  // 保留边框
+  background: #f8f9fa;
+  border: 1px solid #e8e8e8;
   border-radius: 8px;
   padding: 1.5em;
   margin: 1em 0;
@@ -124,7 +125,7 @@ h1:before, .anchor:before {
 }
 
 .news-box {
-  max-height: 270px;
+  max-height: 260px;
   overflow-y: auto;
   padding-right: 10px;
   
@@ -154,32 +155,14 @@ h1:before, .anchor:before {
     margin: 0;
     
     li {
-      display: flex;
       margin-bottom: 0.5em;
       padding-bottom: 0.5em;
       border-bottom: 1px solid #eee;
-      
-      i {  // 日期样式
-        flex: 0 0 5em;  // 固定宽度，不伸缩
-        color: #666;
-      }
-      
-      span.news-content {
-        flex: 1;  // 占据剩余空间
-        min-width: 0;  // 防止flex项目溢出
-        word-wrap: break-word;  // 允许长单词换行
-        word-break: break-word;  // 允许在单词内换行
-      }
       
       &:last-child {
         border-bottom: none;
         margin-bottom: 0;
         padding-bottom: 0;
-      }
-      
-      a {
-        word-wrap: break-word;  // 允许长单词换行
-        word-break: break-word;  // 允许在单词内换行
       }
     }
   }

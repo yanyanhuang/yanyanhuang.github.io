@@ -155,6 +155,7 @@ h1:before, .anchor:before {
     
     li {
       display: flex;
+      gap: 1em;
       margin-bottom: 0.5em;
       padding-bottom: 0.5em;
       border-bottom: 1px solid #eee;
@@ -164,22 +165,10 @@ h1:before, .anchor:before {
         color: #666;
       }
       
-      span.news-content {
-        flex: 1;  // 占据剩余空间
-        min-width: 0;  // 防止flex项目溢出
-        word-wrap: break-word;  // 允许长单词换行
-        word-break: break-word;  // 允许在单词内换行
-      }
-      
       &:last-child {
         border-bottom: none;
         margin-bottom: 0;
         padding-bottom: 0;
-      }
-      
-      a {
-        word-wrap: break-word;  // 允许长单词换行
-        word-break: break-word;  // 允许在单词内换行
       }
     }
   }
