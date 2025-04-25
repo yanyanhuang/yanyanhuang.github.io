@@ -210,10 +210,3 @@ p > a {
     border-bottom: none !important;
   }
 }
-
-/* Specifically overriding archive links */
-.archive a,
-.archive a:hover,
-.archive__item:hover .archive__item-title {
-  text-decoration: none !important; 
-}

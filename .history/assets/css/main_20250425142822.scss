@@ -186,19 +186,7 @@ h1:before, .anchor:before {
 }
 
 /* Custom link styling - remove underlines and make bold */
-a,
-a:link,
-a:visited,
-.page__content a,
-.archive a,
-figcaption a,
-.toc a,
-.nav__list a,
-.greedy-nav a,
-.author__urls a,
-.author__urls_sm a,
-li > a,
-p > a {
+a {
   text-decoration: none !important;
   font-weight: bold !important;
   border-bottom: none !important;
@@ -209,11 +197,4 @@ p > a {
     text-decoration: none !important;
     border-bottom: none !important;
   }
-}
-
-/* Specifically overriding archive links */
-.archive a,
-.archive a:hover,
-.archive__item:hover .archive__item-title {
-  text-decoration: none !important; 
 }
