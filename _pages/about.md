@@ -32,6 +32,10 @@ Beyond academic research, I am passionate about applying machine learning in com
     <ul>
       <li>
         <i>2025.05</i>
+        <span class="news-content">🏆 Secured <strong>Gold Medal</strong> in <a href="https://www.kaggle.com/competitions/drawing-with-llms">Kaggle's "Drawing with LLMs"</a> Competition!</span>
+      </li>
+      <li>
+        <i>2025.05</i>
         <span class="news-content">🎉 Three papers were early accepted by <a href="https://conferences.miccai.org/2025/en/">MICCAI 2025</a>, congrats to my co-authors!</span>
       </li>
       <li>
