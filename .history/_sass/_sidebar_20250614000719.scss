@@ -148,6 +148,98 @@
   font-size: $type-size-4;
 }
 
+// 新增：个人简介区域美化样式
+.author__bio-section {
+  margin-top: 8px;
+  
+  .author__title {
+    font-size: $type-size-6;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 8px;
+    padding: 4px 8px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 4px;
+    text-align: center;
+    
+    @include breakpoint($large) {
+      font-size: $type-size-5;
+      margin-bottom: 12px;
+    }
+  }
+}
+
+.author__highlights {
+  margin-bottom: 10px;
+  
+  .bio-item {
+    margin-bottom: 8px;
+    
+        .bio-text {
+       font-size: $type-size-7;
+       line-height: 1.6;
+       color: #666;
+       display: block;
+       padding: 12px 16px;
+       border-left: 3px solid #007acc;
+       background: rgba(0, 122, 204, 0.05);
+       border-radius: 4px;
+       word-wrap: break-word;
+       white-space: pre-line;
+       
+       @include breakpoint($large) {
+         font-size: $type-size-6;
+         padding: 16px 20px;
+         line-height: 1.7;
+       }
+     }
+  }
+}
+
+.author__contact-info {
+  margin-top: 10px;
+  
+  .contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+    font-size: $type-size-7;
+    color: #555;
+    
+    @include breakpoint($large) {
+      font-size: $type-size-6;
+      margin-bottom: 8px;
+    }
+    
+    i {
+      margin-right: 6px;
+      color: #007acc;
+      width: 14px;
+      text-align: center;
+    }
+    
+    span {
+      color: #555;
+    }
+    
+    a {
+      display: flex;
+      align-items: center;
+      color: #555;
+      text-decoration: none;
+      transition: color 0.2s ease;
+      
+      &:hover {
+        color: #007acc;
+      }
+      
+      span {
+        color: inherit;
+      }
+    }
+  }
+}
+
 .author__bio {
   margin: 0;
 
@@ -247,6 +339,11 @@
 
   li {
     white-space: nowrap;
+    margin-bottom: 4px;
+    
+    @include breakpoint($large) {
+      margin-bottom: 6px;
+    }
   }
 
   a {
@@ -258,9 +355,22 @@
     color: inherit;
     font-size: $type-size-5;
     text-decoration: none;
+    transition: all 0.2s ease;
+    border-radius: 3px;
+    padding-left: 4px;
 
     &:hover {
-      text-decoration: underline;
+      text-decoration: none;
+      background: rgba(0, 122, 204, 0.1);
+      color: #007acc;
+      transform: translateX(2px);
+    }
+    
+    i {
+      color: #007acc;
+      margin-right: 6px;
+      width: 16px;
+      text-align: center;
     }
   }
 }

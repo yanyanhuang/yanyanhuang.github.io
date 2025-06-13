@@ -95,22 +95,10 @@
     max-width: 175px;
     min-width: 75px;
     border-radius: 12px;
-    // 添加浅灰色阴影渐变
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 
-                0 2px 6px rgba(0, 0, 0, 0.08),
-                0 8px 20px rgba(0, 0, 0, 0.05);
-    transition: box-shadow 0.3s ease;
 
     @include breakpoint($large) {
       padding: 0;
       border: none;
-    }
-    
-    // 悬停时增强阴影效果
-    &:hover {
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15), 
-                  0 3px 8px rgba(0, 0, 0, 0.12),
-                  0 12px 24px rgba(0, 0, 0, 0.08);
     }
   }
 }
