@@ -48,7 +48,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     border-bottom: 1px #efefef solid;
-    padding: 1.2em 0 1.2em 0;
+    padding: 2em 0 2em 0;
     
     .paper-box-image{
         justify-content: center;
@@ -98,8 +98,18 @@
                 font-weight: bold;
                 line-height: 1.3;
             }
-        }
-    }
+          }
+  
+}
+
+/* Author description styling */
+.author-description {
+  font-size: 0.85em !important;
+  line-height: 1.4;
+  color: #666;
+}
+
+
 }
 
 $scroll_offset : 2em;
@@ -236,11 +246,4 @@ p > a {
 .archive a:hover,
 .archive__item:hover .archive__item-title {
   text-decoration: none !important; 
-}
-
-/* Author description styling */
-.author-description {
-  font-size: 0.85em !important;
-  line-height: 1.4;
-  color: #666;
 }

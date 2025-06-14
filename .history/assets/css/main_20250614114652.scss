@@ -48,7 +48,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     border-bottom: 1px #efefef solid;
-    padding: 1.2em 0 1.2em 0;
+    padding: 2em 0 2em 0;
     
     .paper-box-image{
         justify-content: center;
@@ -241,6 +241,6 @@ p > a {
 /* Author description styling */
 .author-description {
   font-size: 0.85em !important;
-  line-height: 1.4;
+  line-height: 1.8 !important;
   color: #666;
 }

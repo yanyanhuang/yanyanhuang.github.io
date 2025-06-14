@@ -48,7 +48,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     border-bottom: 1px #efefef solid;
-    padding: 1.2em 0 1.2em 0;
+    padding: 2em 0 2em 0;
     
     .paper-box-image{
         justify-content: center;
@@ -243,4 +243,8 @@ p > a {
   font-size: 0.85em !important;
   line-height: 1.4;
   color: #666;
+  display: block;
+  text-indent: -1.5em;
+  margin-left: 1.5em;
+  white-space: normal;
 }
