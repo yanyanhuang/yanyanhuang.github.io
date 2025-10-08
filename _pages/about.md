@@ -31,6 +31,10 @@ Beyond academic research, I am passionate about applying machine learning in com
   <div class="news-box">
     <ul>
       <li>
+        <i>2025.10</i>
+        <span class="news-content">🎉 Our work on pathology foundation model adaptation has been accepted in principle by <a href="https://www.nature.com/ncomms/">Nature Communications</a>!</span>
+      </li>
+      <li>
         <i>2025.05</i>
         <span class="news-content">🏆 Achieved a <strong>solo Gold Medal</strong> in <a href="https://www.kaggle.com/competitions/drawing-with-llms">Kaggle's "Drawing with LLMs"</a> Competition!</span>
       </li>
@@ -84,6 +88,19 @@ Beyond academic research, I am passionate about applying machine learning in com
 
 <!-- # 📝 Publications -->
 # Publications
+
+<!-- <div class='paper-box'><div class='paper-box-image'><div><img src='images/nc_flex.png' alt="sym" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+
+[Knowledge-Guided Adaptation of Pathology Foundation Models Effectively Improves Cross-domain Generalization and Demographic Fairness](https://www.nature.com/ncomms/)
+
+**Yanyan Huang**, Weiqin Zhao, Zhengyu Zhang, Yihang Chen, Yu Fu, Feng Wu, Yuming Jiang, Li Liang, Shujun Wang, Lequan Yu.
+
+*Nature Communications (********), 2025*
+
+</div>
+</div> -->
+
 
 <div class='paper-box'><div class='paper-box-image'><div><img src='images/miccai25_fmbridge.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
