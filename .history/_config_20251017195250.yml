@@ -7,10 +7,7 @@
 
 # Site Settings
 title                    : "Yanyan Huang Homepage"
-description              : "🎓 PhD Student at The University of Hong Kong
-🏆 Kaggle Competitions Master (Gold × 3, Silver × 2)
-🔬 Specializing in Medical Image Analysis & Computer Vision
-📊 Deep Learning for Computational Pathology"
+description              : "• Kaggle Competitions Master<br>• Third year PhD student at The University of Hong Kong<br>• Focusing on Medical Image Analysis and Artificial Intelligence"
 repository               : "yanyanhuang/yanyanhuang.github.io"
 google_scholar_stats_use_cdn : true
 
