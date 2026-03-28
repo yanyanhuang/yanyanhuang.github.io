@@ -1,29 +1,30 @@
 [site]
-title = "Jiale Liu"
-description = "PhD student at the University of Example."
-favicon = "/favicon.svg"
-last_updated = "November 18, 2025"
+title = "Yanyan Huang · 黄岩岩"
+description = "Personal website of Yanyan Huang"
+favicon = "/favicon.ico"
+last_updated = "November 28, 2025"
 
 [author]
-name = "Jiale Liu"
+name = "Yanyan Huang"
 title = "PhD Student"
-institution = "University of Example"
-avatar = "/bio.jpg"
+institution = "The University of Hong Kong"
+avatar = "/bio.png"
 
 [social]
 # Contact information (leave blank or delete to hide)
 
-email = "john.doe@example.com"
-location = "City, Country"
-location_url = "https://maps.google.com"
+email = "yanyanh@connect.hku.hk"
+location = "Hong Kong"
+location_url = "https://www.hku.hk/"
 location_details = [
-  "Room 123, Science Building,",
-  "University Avenue, City, Country"
+  "School of Computing and Data Science,",
+  "The University of Hong Kong, Hong Kong"
 ]
-google_scholar = "https://scholar.google.com"
-orcid = "https://orcid.org"
-github = "https://github.com"
-linkedin = "https://linkedin.com"
+google_scholar = "https://scholar.google.com/citations?user=6mQ6b1EAAAAJ"
+orcid = ""
+github = "https://github.com/yanyanhuang"
+linkedin = "https://linkedin.com/in/yyhuang8"
+kaggle = "https://www.kaggle.com/rock139"
 
 [features]
 # Show a like button on the about page
@@ -45,12 +46,6 @@ target = "publications"
 href = "/publications"
 
 [[navigation]]
-title = "Teaching"
-type = "page"
-target = "teaching"
-href = "/teaching"
-
-[[navigation]]
 title = "Awards"
 type = "page"
 target = "awards"
@@ -61,9 +56,3 @@ title = "Services"
 type = "page"
 target = "services"
 href = "/services"
-
-[[navigation]]
-title = "CV"
-type = "page"
-target = "cv"
-href = "/cv"

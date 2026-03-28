@@ -1,0 +1,5 @@
+type = "text"
+title = "FLEX: Knowledge-Guided Feature Enhancement"
+description = "A novel framework for robust and fair pathology foundation models"
+source = "projects/flex.md"
+

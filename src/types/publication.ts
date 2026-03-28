@@ -45,6 +45,8 @@ export interface Publication {
   summary?: string;
   researchArea: ResearchArea;
   description?: string;
+  category?: string; // Research content category
+  projectPage?: string; // Link to dedicated project page
 }
 
 export type PublicationType =

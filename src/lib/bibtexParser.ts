@@ -59,6 +59,16 @@ export function parseBibTeX(bibtexContent: string): Publication[] {
     // Parse preview field (remove braces if present)
     const preview = tags.preview?.replace(/[{}]/g, '');
     
+    // Parse pub_type field for manual type specification
+    const manualType = tags.pub_type?.toLowerCase();
+    let finalType = type;
+    if (manualType === 'journal' || manualType === 'conference') {
+      finalType = manualType as PublicationType;
+    }
+    
+    // Determine category from keywords (use first keyword as primary category)
+    const category = keywords.length > 0 ? keywords[0] : undefined;
+    
     // Create publication object
     const publication: Publication = {
       id: entry.citationKey || tags.id || `pub-${Date.now()}-${index}`,
@@ -66,11 +76,12 @@ export function parseBibTeX(bibtexContent: string): Publication[] {
       authors,
       year,
       month: monthMapping[tags.month?.toLowerCase()] ? String(month) : tags.month,
-      type,
+      type: finalType,
       status: 'published',
       tags: keywords,
       keywords,
       researchArea: detectResearchArea(tags.title, keywords),
+      category,
       
       // Optional fields
       journal: cleanBibTeXString(tags.journal),
@@ -85,9 +96,10 @@ export function parseBibTeX(bibtexContent: string): Publication[] {
       description: cleanBibTeXString(tags.description || tags.note),
       selected,
       preview,
+      projectPage: tags.project_page,
       
       // Store original BibTeX (excluding custom fields)
-      bibtex: reconstructBibTeX(entry, ['selected', 'preview', 'description', 'keywords', 'code']),
+      bibtex: reconstructBibTeX(entry, ['selected', 'preview', 'description', 'keywords', 'code', 'pub_type', 'project_page']),
     };
     
     // Clean up undefined fields
@@ -140,9 +152,9 @@ function parseAuthors(authorsStr: string): Array<{ name: string; isHighlighted?:
         name = `${parts[1]} ${parts[0]}`;
       }
       
-      // Check if this is Jiale Liu (to highlight)
-      const isHighlighted = name.toLowerCase().includes('jiale liu') || 
-                          name.toLowerCase().includes('liu jiale');
+      // Check if this is Yanyan Huang (to highlight)
+      const isHighlighted = name.toLowerCase().includes('yanyan huang') || 
+                          name.toLowerCase().includes('huang yanyan');
       
       return {
         name: cleanBibTeXString(name),

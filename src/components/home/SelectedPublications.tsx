@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { Publication } from '@/types/publication';
+import { BeakerIcon, LinkIcon } from '@heroicons/react/24/outline';
+import { Github } from 'lucide-react';
 
 interface SelectedPublicationsProps {
     publications: Publication[];
@@ -45,6 +47,9 @@ export default function SelectedPublications({ publications, title = 'Selected P
                                     <span className={author.isHighlighted ? 'font-semibold text-accent' : ''}>
                                         {author.name}
                                     </span>
+                                    {author.isCoAuthor && (
+                                        <sup className={`ml-0 ${author.isHighlighted ? 'text-accent' : 'text-neutral-600 dark:text-neutral-500'}`}>#</sup>
+                                    )}
                                     {author.isCorresponding && (
                                         <sup className={`ml-0 ${author.isHighlighted ? 'text-accent' : 'text-neutral-600 dark:text-neutral-500'}`}>†</sup>
                                     )}
@@ -52,13 +57,60 @@ export default function SelectedPublications({ publications, title = 'Selected P
                                 </span>
                             ))}
                         </p>
-                        <p className="text-sm text-neutral-600 dark:text-neutral-500 mb-2">
-                            {pub.journal || pub.conference}
+                        <p className="text-sm text-neutral-600 dark:text-neutral-500 mb-2 font-bold">
+                            {pub.journal || pub.conference}{pub.year && `, ${pub.year}`}
                         </p>
                         {pub.description && (
-                            <p className="text-sm text-neutral-500 dark:text-neutral-500 line-clamp-2">
+                            <p className="text-sm text-neutral-500 dark:text-neutral-500 line-clamp-2 mb-2">
                                 {pub.description}
                             </p>
+                        )}
+                        {(pub.projectPage || pub.url || pub.code) && (
+                            <div className="flex flex-wrap gap-2 mb-2">
+                                {pub.projectPage && (
+                                    <Link
+                                        href={pub.projectPage}
+                                        className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-accent hover:text-white transition-colors"
+                                    >
+                                        <BeakerIcon className="h-3 w-3 mr-1" />
+                                        Project
+                                    </Link>
+                                )}
+                                {pub.url && (
+                                    <a
+                                        href={pub.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-accent hover:text-white transition-colors"
+                                    >
+                                        <LinkIcon className="h-3 w-3 mr-1" />
+                                        Paper
+                                    </a>
+                                )}
+                                {pub.code && (
+                                    <a
+                                        href={pub.code}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-accent hover:text-white transition-colors"
+                                    >
+                                        <Github className="h-3 w-3 mr-1" />
+                                        Code
+                                    </a>
+                                )}
+                            </div>
+                        )}
+                        {pub.keywords && pub.keywords.length > 0 && (
+                            <div className="flex flex-wrap gap-1.5 mt-2">
+                                {pub.keywords.map((keyword, idx) => (
+                                    <span
+                                        key={idx}
+                                        className="px-2 py-0.5 text-xs font-medium rounded-full bg-accent/10 text-accent border border-accent/20"
+                                    >
+                                        {keyword}
+                                    </span>
+                                ))}
+                            </div>
                         )}
                     </motion.div>
                 ))}

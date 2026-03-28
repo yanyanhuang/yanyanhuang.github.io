@@ -1,9 +1,51 @@
 type = "card"
-title = "Services"
+title = "Professional Activities"
 description = "Professional services and community involvement."
 
 [[items]]
-title = "Reviewer"
-subtitle = "Journal Name"
-date = "2024"
-content = "Reviewed papers for..."
+title = "Journal Reviewer"
+subtitle = "Nature Communications"
+date = "2025"
+content = "Reviewing manuscripts for Nature Communications as co-reviewer."
+
+[[items]]
+title = "Journal Reviewer"
+subtitle = "npj Digital Medicine"
+date = "2025"
+content = "Reviewing manuscripts for npj Digital Medicine."
+
+[[items]]
+title = "Journal Reviewer"
+subtitle = "IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI)"
+date = "2025"
+content = "Reviewing manuscripts for IEEE TPAMI."
+
+[[items]]
+title = "Journal Reviewer"
+subtitle = "IEEE Transactions on Medical Imaging (TMI)"
+date = "2025"
+content = "Reviewing manuscripts for IEEE Transactions on Medical Imaging."
+
+[[items]]
+title = "Journal Reviewer"
+subtitle = "IEEE Journal of Biomedical and Health Informatics (JBHI)"
+date = "2025"
+content = "Reviewing manuscripts for IEEE JBHI."
+
+[[items]]
+title = "Conference Reviewer"
+subtitle = "Conference on Neural Information Processing Systems (NeurIPS)"
+date = "2025"
+content = "Serving as a reviewer for NeurIPS 2025."
+
+[[items]]
+title = "Conference Reviewer"
+subtitle = "International Conference on Medical Image Computing and Computer-Assisted Intervention (MICCAI)"
+date = "2025"
+content = "Serving as a reviewer for MICCAI 2025."
+
+[[items]]
+title = "Conference Reviewer"
+subtitle = "International Conference on Computer Vision (ICCV) CVAMD Workshop"
+date = "2023"
+content = "Served as a reviewer for ICCV 2023 CVAMD Workshop."

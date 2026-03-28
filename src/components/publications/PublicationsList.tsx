@@ -8,9 +8,12 @@ import {
     FunnelIcon,
     CalendarIcon,
     BookOpenIcon,
-    ClipboardDocumentIcon,
-    DocumentTextIcon
+    DocumentTextIcon,
+    LinkIcon,
+    BeakerIcon
 } from '@heroicons/react/24/outline';
+import { Github } from 'lucide-react';
+import Link from 'next/link';
 import { Publication } from '@/types/publication';
 import { PublicationPageConfig } from '@/types/page';
 import { cn } from '@/lib/utils';
@@ -25,11 +28,11 @@ export default function PublicationsList({ config, publications, embedded = fals
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedYear, setSelectedYear] = useState<number | 'all'>('all');
     const [selectedType, setSelectedType] = useState<string | 'all'>('all');
+    const [selectedCategory, setSelectedCategory] = useState<string | 'all'>('all');
     const [showFilters, setShowFilters] = useState(false);
-    const [expandedBibtexId, setExpandedBibtexId] = useState<string | null>(null);
     const [expandedAbstractId, setExpandedAbstractId] = useState<string | null>(null);
 
-    // Extract unique years and types for filters
+    // Extract unique years, types, and categories for filters
     const years = useMemo(() => {
         const uniqueYears = Array.from(new Set(publications.map(p => p.year)));
         return uniqueYears.sort((a, b) => b - a);
@@ -38,6 +41,11 @@ export default function PublicationsList({ config, publications, embedded = fals
     const types = useMemo(() => {
         const uniqueTypes = Array.from(new Set(publications.map(p => p.type)));
         return uniqueTypes.sort();
+    }, [publications]);
+
+    const categories = useMemo(() => {
+        const uniqueCategories = Array.from(new Set(publications.map(p => p.category).filter(Boolean))) as string[];
+        return uniqueCategories.sort();
     }, [publications]);
 
     // Filter publications
@@ -51,10 +59,11 @@ export default function PublicationsList({ config, publications, embedded = fals
 
             const matchesYear = selectedYear === 'all' || pub.year === selectedYear;
             const matchesType = selectedType === 'all' || pub.type === selectedType;
+            const matchesCategory = selectedCategory === 'all' || pub.category === selectedCategory;
 
-            return matchesSearch && matchesYear && matchesType;
+            return matchesSearch && matchesYear && matchesType && matchesCategory;
         });
-    }, [publications, searchQuery, selectedYear, selectedType]);
+    }, [publications, searchQuery, selectedYear, selectedType, selectedCategory]);
 
     return (
         <motion.div
@@ -175,6 +184,42 @@ export default function PublicationsList({ config, publications, embedded = fals
                                         ))}
                                     </div>
                                 </div>
+
+                                {/* Category Filter */}
+                                {categories.length > 0 && (
+                                    <div className="space-y-2">
+                                        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300 flex items-center">
+                                            <FunnelIcon className="h-4 w-4 mr-1" /> Research Topic
+                                        </label>
+                                        <div className="flex flex-wrap gap-2">
+                                            <button
+                                                onClick={() => setSelectedCategory('all')}
+                                                className={cn(
+                                                    "px-3 py-1 text-xs rounded-full transition-colors",
+                                                    selectedCategory === 'all'
+                                                        ? "bg-accent text-white"
+                                                        : "bg-white dark:bg-neutral-800 text-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-700"
+                                                )}
+                                            >
+                                                All
+                                            </button>
+                                            {categories.map(category => (
+                                                <button
+                                                    key={category}
+                                                    onClick={() => setSelectedCategory(category)}
+                                                    className={cn(
+                                                        "px-3 py-1 text-xs rounded-full transition-colors",
+                                                        selectedCategory === category
+                                                            ? "bg-accent text-white"
+                                                            : "bg-white dark:bg-neutral-800 text-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-700"
+                                                    )}
+                                                >
+                                                    {category}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         </motion.div>
                     )}
@@ -196,16 +241,17 @@ export default function PublicationsList({ config, publications, embedded = fals
                             transition={{ duration: 0.4, delay: 0.1 * index }}
                             className="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-sm border border-neutral-200 dark:border-neutral-800 hover:shadow-md transition-all duration-200"
                         >
-                            <div className="flex flex-col md:flex-row gap-6">
+                            <div className="flex flex-col md:flex-row md:items-center gap-6">
                                 {pub.preview && (
-                                    <div className="w-full md:w-48 flex-shrink-0">
-                                        <div className="aspect-video md:aspect-[4/3] relative rounded-lg overflow-hidden bg-neutral-100 dark:bg-neutral-800">
+                                    <div className="w-full md:w-60 lg:w-80 flex-shrink-0">
+                                        <div className="relative rounded-lg overflow-hidden bg-white dark:bg-white border border-neutral-200 dark:border-neutral-700 h-60 md:h-48 lg:h-64 flex items-center justify-center">
                                             <Image
                                                 src={`/papers/${pub.preview}`}
                                                 alt={pub.title}
-                                                fill
-                                                className="object-cover"
-                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                width={800}
+                                                height={600}
+                                                className="object-contain w-full h-full"
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 320px, 384px"
                                             />
                                         </div>
                                     </div>
@@ -214,12 +260,15 @@ export default function PublicationsList({ config, publications, embedded = fals
                                     <h3 className={`${embedded ? "text-lg" : "text-xl"} font-semibold text-primary mb-2 leading-tight`}>
                                         {pub.title}
                                     </h3>
-                                    <p className={`${embedded ? "text-sm" : "text-base"} text-neutral-600 dark:text-neutral-400 mb-2`}>
+                                    <p className={`${embedded ? "text-sm" : "text-base"} text-neutral-600 dark:text-neutral-400 mb-3`}>
                                         {pub.authors.map((author, idx) => (
                                             <span key={idx}>
                                                 <span className={author.isHighlighted ? 'font-semibold text-accent' : ''}>
                                                     {author.name}
                                                 </span>
+                                                {author.isCoAuthor && (
+                                                    <sup className={`ml-0 ${author.isHighlighted ? 'text-accent' : 'text-neutral-600 dark:text-neutral-400'}`}>#</sup>
+                                                )}
                                                 {author.isCorresponding && (
                                                     <sup className={`ml-0 ${author.isHighlighted ? 'text-accent' : 'text-neutral-600 dark:text-neutral-400'}`}>†</sup>
                                                 )}
@@ -227,9 +276,14 @@ export default function PublicationsList({ config, publications, embedded = fals
                                             </span>
                                         ))}
                                     </p>
-                                    <p className="text-sm font-medium text-neutral-800 dark:text-neutral-600 mb-3">
-                                        {pub.journal || pub.conference} {pub.year}
-                                    </p>
+                                    <div className="mb-3 flex items-baseline gap-2">
+                                        <p className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">
+                                            {pub.journal || pub.conference}
+                                        </p>
+                                        <span className="text-sm text-neutral-500 dark:text-neutral-400 font-medium">
+                                            {pub.year}
+                                        </span>
+                                    </div>
 
                                     {pub.description && (
                                         <p className="text-sm text-neutral-600 dark:text-neutral-500 mb-4 line-clamp-3">
@@ -237,7 +291,29 @@ export default function PublicationsList({ config, publications, embedded = fals
                                         </p>
                                     )}
 
+                                    {pub.keywords && pub.keywords.length > 0 && (
+                                        <div className="flex flex-wrap gap-1.5 mb-4">
+                                            {pub.keywords.map((keyword, idx) => (
+                                                <span
+                                                    key={idx}
+                                                    className="px-2.5 py-0.5 text-xs font-medium rounded-full bg-accent/10 text-accent border border-accent/20"
+                                                >
+                                                    {keyword}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    )}
+
                                     <div className="flex flex-wrap gap-2 mt-auto">
+                                        {pub.projectPage && (
+                                            <Link
+                                                href={pub.projectPage}
+                                                className="inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-accent hover:text-white transition-colors"
+                                            >
+                                                <BeakerIcon className="h-3 w-3 mr-1.5" />
+                                                Project Page
+                                            </Link>
+                                        )}
                                         {pub.doi && (
                                             <a
                                                 href={`https://doi.org/${pub.doi}`}
@@ -246,16 +322,6 @@ export default function PublicationsList({ config, publications, embedded = fals
                                                 className="inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-accent hover:text-white transition-colors"
                                             >
                                                 DOI
-                                            </a>
-                                        )}
-                                        {pub.code && (
-                                            <a
-                                                href={pub.code}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-accent hover:text-white transition-colors"
-                                            >
-                                                Code
                                             </a>
                                         )}
                                         {pub.abstract && (
@@ -272,24 +338,32 @@ export default function PublicationsList({ config, publications, embedded = fals
                                                 Abstract
                                             </button>
                                         )}
-                                        {pub.bibtex && (
-                                            <button
-                                                onClick={() => setExpandedBibtexId(expandedBibtexId === pub.id ? null : pub.id)}
-                                                className={cn(
-                                                    "inline-flex items-center px-3 py-1 rounded-md text-xs font-medium transition-colors",
-                                                    expandedBibtexId === pub.id
-                                                        ? "bg-accent text-white"
-                                                        : "bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-accent hover:text-white"
-                                                )}
+                                        {pub.url && (
+                                            <a
+                                                href={pub.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-accent hover:text-white transition-colors"
                                             >
-                                                <BookOpenIcon className="h-3 w-3 mr-1.5" />
-                                                BibTeX
-                                            </button>
+                                                <LinkIcon className="h-3 w-3 mr-1.5" />
+                                                Paper
+                                            </a>
+                                        )}
+                                        {pub.code && (
+                                            <a
+                                                href={pub.code}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-accent hover:text-white transition-colors"
+                                            >
+                                                <Github className="h-3 w-3 mr-1.5" />
+                                                GitHub
+                                            </a>
                                         )}
                                     </div>
 
                                     <AnimatePresence>
-                                        {expandedAbstractId === pub.id && pub.abstract ? (
+                                        {expandedAbstractId === pub.id && pub.abstract && (
                                             <motion.div
                                                 key="abstract"
                                                 initial={{ opacity: 0, height: 0 }}
@@ -303,32 +377,7 @@ export default function PublicationsList({ config, publications, embedded = fals
                                                     </p>
                                                 </div>
                                             </motion.div>
-                                        ) : null}
-                                        {expandedBibtexId === pub.id && pub.bibtex ? (
-                                            <motion.div
-                                                key="bibtex"
-                                                initial={{ opacity: 0, height: 0 }}
-                                                animate={{ opacity: 1, height: 'auto' }}
-                                                exit={{ opacity: 0, height: 0 }}
-                                                className="overflow-hidden mt-4"
-                                            >
-                                                <div className="relative bg-neutral-50 dark:bg-neutral-800 rounded-lg p-4 border border-neutral-200 dark:border-neutral-700">
-                                                    <pre className="text-xs text-neutral-600 dark:text-neutral-500 overflow-x-auto whitespace-pre-wrap font-mono">
-                                                        {pub.bibtex}
-                                                    </pre>
-                                                    <button
-                                                        onClick={() => {
-                                                            navigator.clipboard.writeText(pub.bibtex || '');
-                                                            // Optional: Show copied feedback
-                                                        }}
-                                                        className="absolute top-2 right-2 p-1.5 rounded-md bg-white dark:bg-neutral-700 text-neutral-500 hover:text-accent shadow-sm border border-neutral-200 dark:border-neutral-600 transition-colors"
-                                                        title="Copy to clipboard"
-                                                    >
-                                                        <ClipboardDocumentIcon className="h-4 w-4" />
-                                                    </button>
-                                                </div>
-                                            </motion.div>
-                                        ) : null}
+                                        )}
                                     </AnimatePresence>
                                 </div>
                             </div>

@@ -1,27 +1,51 @@
 type = "card"
-title = "Awards"
+title = "Honors and Awards"
 description = "Honors and awards I have received."
 
 [[items]]
-title = "Example Award"
-subtitle = "Organization"
-date = "2025"
-content = "Description of the award."
+title = "Solo Gold Medal (12/1347)"
+subtitle = "Kaggle \"Drawing with LLMs\" Competition"
+date = "2025-05"
+content = "Achieved top placement in Google's drawing with LLMs competition on Kaggle."
 
 [[items]]
-title = "Example Award"
-subtitle = "Organization"
-date = "2024"
-content = "Description of the award."
+title = "Gold Medal (7/1165)"
+subtitle = "Kaggle \"Google - Isolated Sign Language Recognition\" Competition"
+date = "2023-05"
+content = "Ranked 7th out of 1,165 teams in Google's Isolated Sign Language Recognition competition."
 
 [[items]]
-title = "Example Award"
-subtitle = "Organization"
-date = "2023"
-content = "Description of the award."
+title = "Gold Medal (4/1175)"
+subtitle = "Kaggle \"Hacking the Human Body\" Competition"
+date = "2022-09"
+content = "Ranked 4th out of 1,175 teams in the HubMap Organ Segmentation competition."
 
 [[items]]
-title = "Example Award"
-subtitle = "Organization"
-date = "2022"
-content = "Description of the award."
+title = "Silver Medal (Top 2%)"
+subtitle = "Kaggle \"HM Recommendation\" Competition"
+date = "2022-05"
+content = "Achieved top 2% placement in H&M Personalized Fashion Recommendations competition."
+
+[[items]]
+title = "People's Scholarship"
+subtitle = "Harbin Institute of Technology"
+date = "2020-06"
+content = "Received People's Scholarship for four consecutive years at Harbin Institute of Technology."
+
+[[items]]
+title = "National Scholarship in China (1.8%)"
+subtitle = "Ministry of Education of China"
+date = "2018-10"
+content = "Awarded National Scholarship, given to top 1.8% of students nationwide."
+
+[[items]]
+title = "First Prize in Northeast Division"
+subtitle = "NXP Cup Smart Car Competition"
+date = "2018-07"
+content = "Won first prize in the Northeast Division of the NXP Cup Smart Car Competition."
+
+[[items]]
+title = "Meritorious Winner"
+subtitle = "Interdisciplinary Contest in Modeling (ICM)"
+date = "2018-04"
+content = "Meritorious Winner in the Interdisciplinary Contest in Modeling, Consortium for Mathematics and Its Application."

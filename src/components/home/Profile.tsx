@@ -1,16 +1,14 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import {
     EnvelopeIcon,
     AcademicCapIcon,
-    HeartIcon,
     MapPinIcon
 } from '@heroicons/react/24/outline';
 import { MapPinIcon as MapPinSolidIcon, EnvelopeIcon as EnvelopeSolidIcon } from '@heroicons/react/24/solid';
-import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
 import { Github, Linkedin, Pin } from 'lucide-react';
 import { SiteConfig } from '@/lib/config';
 
@@ -26,46 +24,31 @@ const OrcidIcon = ({ className }: { className?: string }) => (
     </svg>
 );
 
+// Custom Kaggle icon component
+const KaggleIcon = ({ className }: { className?: string }) => (
+    <svg
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className={className}
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <path d="M18.825 23.859c-.022.092-.117.141-.281.141h-3.139c-.187 0-.351-.082-.492-.248l-5.178-6.589-1.448 1.374v5.111c0 .235-.117.352-.351.352H5.505c-.236 0-.354-.117-.354-.352V.353c0-.233.118-.353.354-.353h2.431c.234 0 .351.12.351.353v14.343l6.203-6.272c.165-.165.33-.246.495-.246h3.239c.144 0 .236.06.285.18.046.149.034.255-.036.315l-6.555 6.344 6.836 8.507c.095.104.117.208.07.358"/>
+    </svg>
+);
+
 interface ProfileProps {
     author: SiteConfig['author'];
     social: SiteConfig['social'];
-    features: SiteConfig['features'];
     researchInterests?: string[];
 }
 
-export default function Profile({ author, social, features, researchInterests }: ProfileProps) {
+export default function Profile({ author, social, researchInterests }: ProfileProps) {
 
-    const [hasLiked, setHasLiked] = useState(false);
-    const [showThanks, setShowThanks] = useState(false);
     const [showAddress, setShowAddress] = useState(false);
     const [isAddressPinned, setIsAddressPinned] = useState(false);
     const [showEmail, setShowEmail] = useState(false);
     const [isEmailPinned, setIsEmailPinned] = useState(false);
     const [lastClickedTooltip, setLastClickedTooltip] = useState<'email' | 'address' | null>(null);
-
-    // Check local storage for user's like status
-    useEffect(() => {
-        if (!features.enable_likes) return;
-
-        const userHasLiked = localStorage.getItem('jiale-website-user-liked');
-        if (userHasLiked === 'true') {
-            setHasLiked(true);
-        }
-    }, [features.enable_likes]);
-
-    const handleLike = () => {
-        const newLikedState = !hasLiked;
-        setHasLiked(newLikedState);
-
-        if (newLikedState) {
-            localStorage.setItem('jiale-website-user-liked', 'true');
-            setShowThanks(true);
-            setTimeout(() => setShowThanks(false), 2000);
-        } else {
-            localStorage.removeItem('jiale-website-user-liked');
-            setShowThanks(false);
-        }
-    };
 
     const socialLinks = [
         ...(social.email ? [{
@@ -100,6 +83,11 @@ export default function Profile({ author, social, features, researchInterests }:
             href: social.linkedin,
             icon: Linkedin,
         }] : []),
+        ...(social.kaggle ? [{
+            name: 'Kaggle',
+            href: social.kaggle,
+            icon: KaggleIcon,
+        }] : []),
     ];
 
     return (
@@ -110,12 +98,12 @@ export default function Profile({ author, social, features, researchInterests }:
             className="sticky top-8"
         >
             {/* Profile Image */}
-            <div className="w-64 h-64 mx-auto mb-6 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105">
+            <div className="w-48 h-48 mx-auto mb-6 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105">
                 <Image
                     src={author.avatar}
                     alt={author.name}
-                    width={256}
-                    height={256}
+                    width={192}
+                    height={192}
                     className="w-full h-full object-cover object-[32%_center]"
                     priority
                 />
@@ -129,7 +117,10 @@ export default function Profile({ author, social, features, researchInterests }:
                 <p className="text-lg text-accent font-medium mb-1">
                     {author.title}
                 </p>
-                <p className="text-neutral-600 mb-2">
+                <p className="text-sm text-accent font-medium mb-1">
+                    Kaggle Competitions Master
+                </p>
+                <p className="text-neutral-600 dark:text-neutral-500 mb-2">
                     {author.institution}
                 </p>
             </div>
@@ -303,51 +294,12 @@ export default function Profile({ author, social, features, researchInterests }:
 
             {/* Research Interests */}
             {researchInterests && researchInterests.length > 0 && (
-                <div className="bg-neutral-100 dark:bg-neutral-800 rounded-lg p-4 mb-6 hover:shadow-lg transition-all duration-200 hover:scale-[1.02]">
+                <div className="bg-neutral-100 dark:bg-neutral-800 rounded-lg p-4 hover:shadow-lg transition-all duration-200 hover:scale-[1.02]">
                     <h3 className="font-semibold text-primary mb-3">Research Interests</h3>
                     <div className="space-y-2 text-sm text-neutral-700 dark:text-neutral-500">
                         {researchInterests.map((interest, index) => (
                             <div key={index}>{interest}</div>
                         ))}
-                    </div>
-                </div>
-            )}
-
-            {/* Like Button */}
-            {features.enable_likes && (
-                <div className="flex justify-center">
-                    <div className="relative">
-                        <motion.button
-                            onClick={handleLike}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 ${hasLiked
-                                ? 'bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400'
-                                : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-500 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 cursor-pointer'
-                                }`}
-                        >
-                            {hasLiked ? (
-                                <HeartSolidIcon className="h-4 w-4" />
-                            ) : (
-                                <HeartIcon className="h-4 w-4" />
-                            )}
-                            <span>{hasLiked ? 'Liked' : 'Like'}</span>
-                        </motion.button>
-
-                        {/* Thanks bubble */}
-                        <AnimatePresence>
-                            {showThanks && (
-                                <motion.div
-                                    initial={{ opacity: 0, y: 10, scale: 0.8 }}
-                                    animate={{ opacity: 1, y: -10, scale: 1 }}
-                                    exit={{ opacity: 0, y: -20, scale: 0.8 }}
-                                    className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full bg-accent text-white px-4 py-2 rounded-lg text-sm font-medium shadow-lg whitespace-nowrap"
-                                >
-                                    Thanks! 😊
-                                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-accent"></div>
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
                     </div>
                 </div>
             )}

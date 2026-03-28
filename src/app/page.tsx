@@ -130,20 +130,19 @@ export default function Home() {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-background min-h-screen">
       {/* Main Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
 
         {/* Left Column - Profile */}
         <div className="lg:col-span-1">
           <Profile
             author={config.author}
             social={config.social}
-            features={config.features}
             researchInterests={researchInterests}
           />
         </div>
 
         {/* Right Column - Content */}
-        <div className="lg:col-span-2 space-y-8">
+        <div className="lg:col-span-3 space-y-8">
           {pagesToShow.map((page) => (
             <section key={page.id} id={page.id} className="scroll-mt-24 space-y-8">
               {page.type === 'about' && page.sections.map((section: SectionConfig) => {
@@ -162,7 +161,7 @@ export default function Home() {
                         key={section.id}
                         publications={section.publications || []}
                         title={section.title}
-                        enableOnePageMode={true}
+                        enableOnePageMode={enableOnePageMode}
                       />
                     );
                   case 'list':
