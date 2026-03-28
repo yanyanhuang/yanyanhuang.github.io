@@ -107,7 +107,7 @@ export default function RootLayout({
           <main className="min-h-screen pt-16 lg:pt-20">
             {children}
           </main>
-          <Footer lastUpdated={config.site.last_updated} />
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
