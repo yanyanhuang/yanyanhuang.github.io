@@ -10,7 +10,9 @@ import {
     BookOpenIcon,
     DocumentTextIcon,
     LinkIcon,
-    BeakerIcon
+    BeakerIcon,
+    InformationCircleIcon,
+    XMarkIcon
 } from '@heroicons/react/24/outline';
 import { Github } from 'lucide-react';
 import Link from 'next/link';
@@ -29,8 +31,10 @@ export default function PublicationsList({ config, publications, embedded = fals
     const [selectedYear, setSelectedYear] = useState<number | 'all'>('all');
     const [selectedType, setSelectedType] = useState<string | 'all'>('all');
     const [selectedCategory, setSelectedCategory] = useState<string | 'all'>('all');
+    const [selectedKeyword, setSelectedKeyword] = useState<string | 'all'>('all');
     const [showFilters, setShowFilters] = useState(false);
     const [expandedAbstractId, setExpandedAbstractId] = useState<string | null>(null);
+    const [expandedDescId, setExpandedDescId] = useState<string | null>(null);
 
     // Extract unique years, types, and categories for filters
     const years = useMemo(() => {
@@ -48,6 +52,11 @@ export default function PublicationsList({ config, publications, embedded = fals
         return uniqueCategories.sort();
     }, [publications]);
 
+    const keywords = useMemo(() => {
+        const allKeywords = publications.flatMap(p => p.keywords || []);
+        return Array.from(new Set(allKeywords)).sort();
+    }, [publications]);
+
     // Filter publications
     const filteredPublications = useMemo(() => {
         return publications.filter(pub => {
@@ -60,10 +69,11 @@ export default function PublicationsList({ config, publications, embedded = fals
             const matchesYear = selectedYear === 'all' || pub.year === selectedYear;
             const matchesType = selectedType === 'all' || pub.type === selectedType;
             const matchesCategory = selectedCategory === 'all' || pub.category === selectedCategory;
+            const matchesKeyword = selectedKeyword === 'all' || (pub.keywords && pub.keywords.includes(selectedKeyword));
 
-            return matchesSearch && matchesYear && matchesType && matchesCategory;
+            return matchesSearch && matchesYear && matchesType && matchesCategory && matchesKeyword;
         });
-    }, [publications, searchQuery, selectedYear, selectedType, selectedCategory]);
+    }, [publications, searchQuery, selectedYear, selectedType, selectedCategory, selectedKeyword]);
 
     return (
         <motion.div
@@ -220,6 +230,42 @@ export default function PublicationsList({ config, publications, embedded = fals
                                         </div>
                                     </div>
                                 )}
+
+                                {/* Keyword Filter */}
+                                {keywords.length > 0 && (
+                                    <div className="space-y-2">
+                                        <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300 flex items-center">
+                                            <BookOpenIcon className="h-4 w-4 mr-1" /> Keyword
+                                        </label>
+                                        <div className="flex flex-wrap gap-2">
+                                            <button
+                                                onClick={() => setSelectedKeyword('all')}
+                                                className={cn(
+                                                    "px-3 py-1 text-xs rounded-full transition-colors",
+                                                    selectedKeyword === 'all'
+                                                        ? "bg-accent text-white"
+                                                        : "bg-white dark:bg-neutral-800 text-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-700"
+                                                )}
+                                            >
+                                                All
+                                            </button>
+                                            {keywords.map(keyword => (
+                                                <button
+                                                    key={keyword}
+                                                    onClick={() => setSelectedKeyword(keyword)}
+                                                    className={cn(
+                                                        "px-3 py-1 text-xs rounded-full transition-colors",
+                                                        selectedKeyword === keyword
+                                                            ? "bg-accent text-white"
+                                                            : "bg-white dark:bg-neutral-800 text-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-700"
+                                                    )}
+                                                >
+                                                    {keyword}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         </motion.div>
                     )}
@@ -227,40 +273,37 @@ export default function PublicationsList({ config, publications, embedded = fals
             </div>
 
             {/* Publications Grid */}
-            <div className="space-y-6">
+            <div>
                 {filteredPublications.length === 0 ? (
                     <div className="text-center py-12 text-neutral-500">
                         No publications found matching your criteria.
                     </div>
                 ) : (
-                    filteredPublications.map((pub, index) => (
-                        <motion.div
-                            key={pub.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.4, delay: 0.1 * index }}
-                            className="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-sm border border-neutral-200 dark:border-neutral-800 hover:shadow-md transition-all duration-200"
-                        >
-                            <div className="flex flex-col md:flex-row md:items-center gap-6">
-                                {pub.preview && (
-                                    <div className="w-full md:w-60 lg:w-80 flex-shrink-0">
-                                        <div className="relative rounded-lg overflow-hidden bg-white dark:bg-white border border-neutral-200 dark:border-neutral-700 h-60 md:h-48 lg:h-64 flex items-center justify-center">
-                                            <Image
-                                                src={`/papers/${pub.preview}`}
-                                                alt={pub.title}
-                                                width={800}
-                                                height={600}
-                                                className="object-contain w-full h-full"
-                                                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 320px, 384px"
-                                            />
+                    (() => {
+                        let lastYear: number | null = null;
+                        return filteredPublications.map((pub, index) => {
+                            const showYearHeader = pub.year !== lastYear;
+                            lastYear = pub.year;
+                            return (
+                                <div key={pub.id}>
+                                    {showYearHeader && (
+                                        <div className={`flex items-center gap-3 ${index === 0 ? 'mb-4' : 'mt-8 mb-4'}`}>
+                                            <h3 className="text-2xl font-serif font-bold text-primary">{pub.year}</h3>
+                                            <div className="flex-grow h-px bg-neutral-200 dark:bg-neutral-700" />
                                         </div>
-                                    </div>
-                                )}
-                                <div className="flex-grow">
-                                    <h3 className={`${embedded ? "text-lg" : "text-xl"} font-semibold text-primary mb-2 leading-tight`}>
+                                    )}
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.4, delay: 0.1 * index }}
+                                        className={`bg-neutral-50 dark:bg-neutral-800 p-4 rounded-lg shadow-sm border border-neutral-200 dark:border-[rgba(148,163,184,0.24)] border-l-3 border-l-[#7c9ab5] hover:shadow-lg transition-all duration-200 hover:scale-[1.02] mb-4`}
+                                    >
+                                        <div>
+                                            <div>
+                                    <h3 className="font-semibold text-primary mb-2 leading-tight">
                                         {pub.title}
                                     </h3>
-                                    <p className={`${embedded ? "text-sm" : "text-base"} text-neutral-600 dark:text-neutral-400 mb-3`}>
+                                    <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
                                         {pub.authors.map((author, idx) => (
                                             <span key={idx}>
                                                 <span className={author.isHighlighted ? 'font-semibold text-accent' : ''}>
@@ -276,35 +319,46 @@ export default function PublicationsList({ config, publications, embedded = fals
                                             </span>
                                         ))}
                                     </p>
-                                    <div className="mb-3 flex items-baseline gap-2">
-                                        <p className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">
-                                            {pub.journal || pub.conference}
-                                        </p>
-                                        <span className="text-sm text-neutral-500 dark:text-neutral-400 font-medium">
-                                            {pub.year}
-                                        </span>
-                                    </div>
+                                    <p className="text-sm text-neutral-600 dark:text-neutral-500 mb-2 font-bold">
+                                        {pub.journal || pub.conference}{pub.year && `, ${pub.year}`}
+                                    </p>
 
                                     {pub.description && (
-                                        <p className="text-sm text-neutral-600 dark:text-neutral-500 mb-4 line-clamp-3">
-                                            {pub.description}
-                                        </p>
-                                    )}
-
-                                    {pub.keywords && pub.keywords.length > 0 && (
-                                        <div className="flex flex-wrap gap-1.5 mb-4">
-                                            {pub.keywords.map((keyword, idx) => (
-                                                <span
-                                                    key={idx}
-                                                    className="px-2.5 py-0.5 text-xs font-medium rounded-full bg-accent/10 text-accent border border-accent/20"
+                                        <AnimatePresence>
+                                            {expandedDescId === pub.id && (
+                                                <motion.div
+                                                    initial={{ opacity: 0, height: 0 }}
+                                                    animate={{ opacity: 1, height: 'auto' }}
+                                                    exit={{ opacity: 0, height: 0 }}
+                                                    transition={{ duration: 0.25 }}
+                                                    className="overflow-hidden mb-4"
                                                 >
-                                                    {keyword}
-                                                </span>
-                                            ))}
-                                        </div>
+                                                    <p className="text-sm text-neutral-600 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-800/50 rounded-md p-3 leading-relaxed">
+                                                        {pub.description}
+                                                    </p>
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
                                     )}
 
                                     <div className="flex flex-wrap gap-2 mt-auto">
+                                        {pub.description && (
+                                            <button
+                                                onClick={() => setExpandedDescId(expandedDescId === pub.id ? null : pub.id)}
+                                                className={cn(
+                                                    "inline-flex items-center px-3 py-1 rounded-md text-xs font-medium transition-colors cursor-pointer",
+                                                    expandedDescId === pub.id
+                                                        ? "bg-accent text-white"
+                                                        : "bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-accent hover:text-white"
+                                                )}
+                                            >
+                                                {expandedDescId === pub.id ? (
+                                                    <><XMarkIcon className="h-3 w-3 mr-1.5" />Close</>
+                                                ) : (
+                                                    <><InformationCircleIcon className="h-3 w-3 mr-1.5" />Details</>
+                                                )}
+                                            </button>
+                                        )}
                                         {pub.projectPage && (
                                             <Link
                                                 href={pub.projectPage}
@@ -381,8 +435,11 @@ export default function PublicationsList({ config, publications, embedded = fals
                                     </AnimatePresence>
                                 </div>
                             </div>
-                        </motion.div>
-                    ))
+                                    </motion.div>
+                                </div>
+                            );
+                        });
+                    })()
                 )}
             </div>
         </motion.div>

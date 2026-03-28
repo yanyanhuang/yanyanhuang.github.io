@@ -52,7 +52,7 @@ export default function Home() {
           const bibtex = getBibtexContent('publications.bib');
           const allPubs = parseBibTeX(bibtex);
           const filteredPubs = section.filter === 'selected'
-            ? allPubs.filter(p => p.selected)
+            ? allPubs.filter(p => p.selected).sort((a, b) => (a.selectedOrder ?? 0) - (b.selectedOrder ?? 0))
             : allPubs;
           return {
             ...section,

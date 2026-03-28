@@ -1,9 +1,10 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { Publication } from '@/types/publication';
-import { BeakerIcon, LinkIcon } from '@heroicons/react/24/outline';
+import { BeakerIcon, LinkIcon, InformationCircleIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { Github } from 'lucide-react';
 
 interface SelectedPublicationsProps {
@@ -13,6 +14,8 @@ interface SelectedPublicationsProps {
 }
 
 export default function SelectedPublications({ publications, title = 'Selected Publications', enableOnePageMode = false }: SelectedPublicationsProps) {
+    const [expandedId, setExpandedId] = useState<string | null>(null);
+
     return (
         <motion.section
             initial={{ opacity: 0, y: 20 }}
@@ -36,7 +39,7 @@ export default function SelectedPublications({ publications, title = 'Selected P
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.4, delay: 0.1 * index }}
-                        className="bg-neutral-50 dark:bg-neutral-800 p-4 rounded-lg shadow-sm border border-neutral-200 dark:border-[rgba(148,163,184,0.24)] hover:shadow-lg transition-all duration-200 hover:scale-[1.02]"
+                        className={`bg-neutral-50 dark:bg-neutral-800 p-4 rounded-lg shadow-sm border border-neutral-200 dark:border-[rgba(148,163,184,0.24)] border-l-3 border-l-[#7c9ab5] hover:shadow-lg transition-all duration-200 hover:scale-[1.02]`}
                     >
                         <h3 className="font-semibold text-primary mb-2 leading-tight">
                             {pub.title}
@@ -61,57 +64,67 @@ export default function SelectedPublications({ publications, title = 'Selected P
                             {pub.journal || pub.conference}{pub.year && `, ${pub.year}`}
                         </p>
                         {pub.description && (
-                            <p className="text-sm text-neutral-500 dark:text-neutral-500 line-clamp-2 mb-2">
-                                {pub.description}
-                            </p>
+                            <>
+                                <AnimatePresence>
+                                    {expandedId === pub.id && (
+                                        <motion.p
+                                            initial={{ opacity: 0, height: 0 }}
+                                            animate={{ opacity: 1, height: 'auto' }}
+                                            exit={{ opacity: 0, height: 0 }}
+                                            transition={{ duration: 0.25 }}
+                                            className="text-sm text-neutral-500 dark:text-neutral-400 mb-2 overflow-hidden bg-neutral-100 dark:bg-neutral-700/50 rounded-md p-3 leading-relaxed"
+                                        >
+                                            {pub.description}
+                                        </motion.p>
+                                    )}
+                                </AnimatePresence>
+                            </>
                         )}
-                        {(pub.projectPage || pub.url || pub.code) && (
-                            <div className="flex flex-wrap gap-2 mb-2">
-                                {pub.projectPage && (
-                                    <Link
-                                        href={pub.projectPage}
-                                        className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-accent hover:text-white transition-colors"
-                                    >
-                                        <BeakerIcon className="h-3 w-3 mr-1" />
-                                        Project
-                                    </Link>
-                                )}
-                                {pub.url && (
-                                    <a
-                                        href={pub.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-accent hover:text-white transition-colors"
-                                    >
-                                        <LinkIcon className="h-3 w-3 mr-1" />
-                                        Paper
-                                    </a>
-                                )}
-                                {pub.code && (
-                                    <a
-                                        href={pub.code}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-accent hover:text-white transition-colors"
-                                    >
-                                        <Github className="h-3 w-3 mr-1" />
-                                        Code
-                                    </a>
-                                )}
-                            </div>
-                        )}
-                        {pub.keywords && pub.keywords.length > 0 && (
-                            <div className="flex flex-wrap gap-1.5 mt-2">
-                                {pub.keywords.map((keyword, idx) => (
-                                    <span
-                                        key={idx}
-                                        className="px-2 py-0.5 text-xs font-medium rounded-full bg-accent/10 text-accent border border-accent/20"
-                                    >
-                                        {keyword}
-                                    </span>
-                                ))}
-                            </div>
-                        )}
+                        <div className="flex flex-wrap gap-2 mb-2">
+                            {pub.description && (
+                                <button
+                                    onClick={() => setExpandedId(expandedId === pub.id ? null : pub.id)}
+                                    className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-accent hover:text-white transition-colors cursor-pointer"
+                                >
+                                    {expandedId === pub.id ? (
+                                        <><XMarkIcon className="h-3 w-3 mr-1" />Close</>
+                                    ) : (
+                                        <><InformationCircleIcon className="h-3 w-3 mr-1" />Details</>
+                                    )}
+                                </button>
+                            )}
+                            {pub.projectPage && (
+                                <Link
+                                    href={pub.projectPage}
+                                    className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-accent hover:text-white transition-colors"
+                                >
+                                    <BeakerIcon className="h-3 w-3 mr-1" />
+                                    Project
+                                </Link>
+                            )}
+                            {pub.url && (
+                                <a
+                                    href={pub.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-accent hover:text-white transition-colors"
+                                >
+                                    <LinkIcon className="h-3 w-3 mr-1" />
+                                    Paper
+                                </a>
+                            )}
+                            {pub.code && (
+                                <a
+                                    href={pub.code}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-accent hover:text-white transition-colors"
+                                >
+                                    <Github className="h-3 w-3 mr-1" />
+                                    Code
+                                </a>
+                            )}
+                        </div>
                     </motion.div>
                 ))}
             </div>

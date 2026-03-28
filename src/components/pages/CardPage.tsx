@@ -64,7 +64,7 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
                         transition={{ duration: 0.4, delay: 0.1 * categoryIndex }}
                         className={`bg-white dark:bg-neutral-900 ${embedded ? "p-4" : "p-6"} rounded-xl shadow-sm border border-neutral-200 dark:border-neutral-800 hover:shadow-md transition-all duration-200`}
                     >
-                        <h2 className={`${embedded ? "text-lg" : "text-xl"} font-semibold text-primary mb-4 pb-3 border-b border-neutral-200 dark:border-neutral-800`}>
+                        <h2 className={`${embedded ? "text-base" : "text-lg"} font-semibold text-primary mb-4 pb-3 border-b border-neutral-200 dark:border-neutral-800`}>
                             {category}
                         </h2>
                         <div className="space-y-4">
@@ -74,7 +74,7 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
                                     className="relative pl-4 border-l-2 border-neutral-200 dark:border-neutral-800"
                                 >
                                     <div className="flex justify-between items-start mb-1">
-                                        <h3 className={`${embedded ? "text-base" : "text-lg"} font-medium ${hideItemTitle && item.subtitle ? "text-accent" : "text-neutral-800 dark:text-neutral-200"}`}>
+                                        <h3 className={`${embedded ? "text-sm" : "text-base"} font-medium ${hideItemTitle && item.subtitle ? "text-accent" : "text-neutral-800 dark:text-neutral-200"}`}>
                                             {hideItemTitle && item.subtitle ? item.subtitle : item.title}
                                         </h3>
                                         {!hideDate && item.date && (
@@ -84,12 +84,12 @@ export default function CardPage({ config, embedded = false }: { config: CardPag
                                         )}
                                     </div>
                                     {!hideItemTitle && item.subtitle && (
-                                        <p className={`${embedded ? "text-sm" : "text-base"} text-accent font-medium mb-1`}>
+                                        <p className={`${embedded ? "text-xs" : "text-sm"} text-accent font-medium mb-1`}>
                                             {item.subtitle}
                                         </p>
                                     )}
                                     {item.content && (
-                                        <p className={`${embedded ? "text-xs" : "text-sm"} text-neutral-600 dark:text-neutral-500 leading-relaxed`}>
+                                        <p className={`${embedded ? "text-xs" : "text-xs"} text-neutral-600 dark:text-neutral-500 leading-relaxed`}>
                                             {item.content}
                                         </p>
                                     )}

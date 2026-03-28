@@ -95,11 +95,12 @@ export function parseBibTeX(bibtexContent: string): Publication[] {
       abstract: cleanBibTeXString(tags.abstract),
       description: cleanBibTeXString(tags.description || tags.note),
       selected,
+      selectedOrder: tags.selected_order ? parseInt(tags.selected_order) : undefined,
       preview,
       projectPage: tags.project_page,
-      
+
       // Store original BibTeX (excluding custom fields)
-      bibtex: reconstructBibTeX(entry, ['selected', 'preview', 'description', 'keywords', 'code', 'pub_type', 'project_page']),
+      bibtex: reconstructBibTeX(entry, ['selected', 'selected_order', 'preview', 'description', 'keywords', 'code', 'pub_type', 'project_page']),
     };
     
     // Clean up undefined fields
