@@ -114,6 +114,20 @@ export default function Navigation({ items, siteTitle, enableOnePageMode }: Navi
                   <div className="ml-10 flex items-center space-x-8">
                     <div className="flex items-baseline space-x-8">
                       {items.map((item) => {
+                        if (item.type === 'link') {
+                          return (
+                            <a
+                              key={item.title}
+                              href={item.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="relative px-3 py-2 text-sm font-medium transition-all duration-200 rounded hover:bg-accent/10 hover:shadow-sm text-neutral-600 hover:text-primary"
+                            >
+                              <span className="relative z-10">{item.title}</span>
+                            </a>
+                          );
+                        }
+
                         const isActive = enableOnePageMode
                           ? activeHash === `#${item.target}` || (!activeHash && item.target === 'about')
                           : (item.href === '/'
@@ -192,6 +206,27 @@ export default function Navigation({ items, siteTitle, enableOnePageMode }: Navi
                 >
                   <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                     {items.map((item, index) => {
+                      if (item.type === 'link') {
+                        return (
+                          <motion.div
+                            key={item.title}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: index * 0.1 }}
+                          >
+                            <Disclosure.Button
+                              as="a"
+                              href={item.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 text-neutral-600 hover:text-primary hover:bg-neutral-50"
+                            >
+                              {item.title}
+                            </Disclosure.Button>
+                          </motion.div>
+                        );
+                      }
+
                       const isActive = enableOnePageMode
                         ? (item.href === '/' ? pathname === '/' && !activeHash : activeHash === `#${item.target}`)
                         : (item.href === '/'

@@ -56,3 +56,9 @@ title = "Services"
 type = "page"
 target = "services"
 href = "/services"
+
+[[navigation]]
+title = "CV"
+type = "link"
+target = "cv"
+href = "/cv.pdf"
